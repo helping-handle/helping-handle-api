@@ -5,12 +5,12 @@ class GoalsControllerTest < ActionDispatch::IntegrationTest
     @goal = goals(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get goals_url, as: :json
     assert_response :success
   end
 
-  test "should create goal" do
+  test 'should create goal' do
     assert_difference('Goal.count') do
       post goals_url, params: { goal: { amount: @goal.amount, deleted: @goal.deleted, description: @goal.description, name: @goal.name, posted: @goal.posted, public: @goal.public, user_id: @goal.user_id } }, as: :json
     end
@@ -18,17 +18,17 @@ class GoalsControllerTest < ActionDispatch::IntegrationTest
     assert_response 201
   end
 
-  test "should show goal" do
+  test 'should show goal' do
     get goal_url(@goal), as: :json
     assert_response :success
   end
 
-  test "should update goal" do
+  test 'should update goal' do
     patch goal_url(@goal), params: { goal: { amount: @goal.amount, deleted: @goal.deleted, description: @goal.description, name: @goal.name, posted: @goal.posted, public: @goal.public, user_id: @goal.user_id } }, as: :json
     assert_response 200
   end
 
-  test "should destroy goal" do
+  test 'should destroy goal' do
     assert_difference('Goal.count', -1) do
       delete goal_url(@goal), as: :json
     end
