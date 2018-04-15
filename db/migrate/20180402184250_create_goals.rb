@@ -3,7 +3,7 @@ class CreateGoals < ActiveRecord::Migration[5.1]
     create_table :goals do |t|
       t.references :user, foreign_key: true
       t.text :name
-      t.text :description
+      t.text :desc
       t.decimal :amount
       t.datetime :posted
       t.boolean :public

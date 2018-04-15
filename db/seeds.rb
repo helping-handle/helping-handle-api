@@ -1,7 +1,81 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+u1 = User.create ({
+  name: 'Sonja Page',
+  handle: 'sonja',
+  password: 'asdfklhjsdf',
+  email: 'spage@mba2018.hbs.edu',
+  role: :donor
+})
+
+u2 = User.create ({
+  name: 'Karla Mendez',
+  handle: 'kmendez',
+  password: 'password',
+  email: 'kmendez@mba2018.hbs.edu',
+  role: :donor
+})
+
+u3 = User.create ({
+  name: 'Jason Nedell',
+  handle: 'nedell',
+  password: 'password',
+  email: 'jason@pnc.one',
+  role: :donor
+})
+
+u4 = User.create ({
+  name: 'Rickon Stark',
+  handle: 'ricon',
+  password: 'password',
+  email: 'rickon@north.com',
+  role: :recipient
+})
+
+u5 = User.create ({
+  name: 'Myrcella Baratheon',
+  handle: 'princess',
+  password: 'password',
+  email: 'princess@theredkeep.gov',
+  role: :recipient
+})
+
+Goal.create ({
+  user: u4,
+  name: 'Pay November Rent',
+  desc: 'I need some help paying my rent for this month. All proceeds'\
+        'go directly to my landlord!',
+  amount: 300,
+  posted: (1.day + 3.hour).ago,
+  public: true,
+  deleted: false
+})
+
+Goal.create ({
+  user: u4,
+  name: 'Buy Week\'s Groceries',
+  desc: 'Items include eggs, milk, vegetables, and rice.',
+  amount: 40,
+  posted: (1.day + 10.hour).ago,
+  public: true,
+  deleted: false
+})
+
+Goal.create ({
+  user: u5,
+  name: 'Christmas Present for Kids',
+  desc: 'My children need as many Bionicles as possible! Please help '\
+        'me buy 10 of them so my son can unite them into the Toa Muta',
+  amount: 70,
+  posted: (2.day + 1.hour).ago,
+  public: true,
+  deleted: false
+})
+
+Goal.create ({
+  user: u5,
+  name: 'Bus Fare',
+  desc: 'Looking to obtain bus fair for the month so I can commute to work',
+  amount: 70,
+  posted: (1.day + 3.hour).ago,
+  public: true,
+  deleted: false
+})
