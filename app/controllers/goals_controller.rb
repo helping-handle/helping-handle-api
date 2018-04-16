@@ -3,9 +3,11 @@ class GoalsController < ApplicationController
 
   # GET /goals
   def index
-    @goals = Goal.all
+    @goals = Goal.includes(:user).all
 
-    render json: @goals
+    render json: @goals,
+                 :include => {:user => {:only => [:id, :handle]}},
+                 :except => [:deleted, :public]
   end
 
   # GET /goals/1

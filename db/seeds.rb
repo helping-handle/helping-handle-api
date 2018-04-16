@@ -1,31 +1,33 @@
+require 'faker'
+
 u1 = User.create ({
   name: 'Sonja Page',
   handle: 'sonja',
-  password: 'asdfklhjsdf',
+  password: 'topsecret',
   email: 'spage@mba2018.hbs.edu',
-  role: :donor
+  role: :admin
 })
 
 u2 = User.create ({
   name: 'Karla Mendez',
   handle: 'kmendez',
-  password: 'password',
+  password: 'topsecret',
   email: 'kmendez@mba2018.hbs.edu',
-  role: :donor
+  role: :admin
 })
 
 u3 = User.create ({
   name: 'Jason Nedell',
   handle: 'nedell',
-  password: 'password',
+  password: 'topsecret',
   email: 'jason@pnc.one',
-  role: :donor
+  role: :admin
 })
 
 u4 = User.create ({
   name: 'Rickon Stark',
   handle: 'ricon',
-  password: 'password',
+  password: 'topsecret',
   email: 'rickon@north.com',
   role: :recipient
 })
@@ -33,7 +35,7 @@ u4 = User.create ({
 u5 = User.create ({
   name: 'Myrcella Baratheon',
   handle: 'princess',
-  password: 'password',
+  password: 'topsecret',
   email: 'princess@theredkeep.gov',
   role: :recipient
 })
@@ -41,7 +43,7 @@ u5 = User.create ({
 Goal.create ({
   user: u4,
   name: 'Pay November Rent',
-  desc: 'I need some help paying my rent for this month. All proceeds'\
+  desc: 'I need some help paying my rent for this month. All proceeds '\
         'go directly to my landlord!',
   amount: 300,
   posted: (1.day + 3.hour).ago,
