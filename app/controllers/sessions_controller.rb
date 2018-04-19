@@ -4,7 +4,11 @@ class SessionsController < Devise::SessionsController
   end
 
   def show
-    @user = current_user
+    if user_signed_in?
+      render json: current_user
+    else
+      render json: { msg: 'You are not logged in' }, status: 403
+    end
   end
 
   private
