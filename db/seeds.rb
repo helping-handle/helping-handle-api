@@ -1,83 +1,74 @@
 require 'faker'
+require 'as-duration'
 
-u1 = User.create ({
+# Admin Users
+
+User.create ({
   name: 'Sonja Page',
   handle: 'sonja',
   password: 'topsecret',
   email: 'spage@mba2018.hbs.edu',
+  confirmed_at: Faker::Time.between(2.days.ago, Date.today, :day),
   role: :admin
 })
 
-u2 = User.create ({
+User.create ({
   name: 'Karla Mendez',
   handle: 'kmendez',
   password: 'topsecret',
   email: 'kmendez@mba2018.hbs.edu',
+  confirmed_at: Faker::Time.between(2.days.ago, Date.today, :day),
   role: :admin
 })
 
-u3 = User.create ({
+User.create ({
   name: 'Jason Nedell',
   handle: 'nedell',
   password: 'topsecret',
   email: 'jason@pnc.one',
+  confirmed_at: Faker::Time.between(2.days.ago, Date.today, :day),
   role: :admin
 })
 
-u4 = User.create ({
-  name: 'Rickon Stark',
-  handle: 'ricon',
-  password: 'topsecret',
-  email: 'rickon@north.com',
-  role: :recipient
-})
+# Recipients
 
-u5 = User.create ({
-  name: 'Myrcella Baratheon',
-  handle: 'princess',
-  password: 'topsecret',
-  email: 'princess@theredkeep.gov',
-  role: :recipient
-})
+10.times do
+  User.create ({
+    name: Faker::GameOfThrones.unique.character,
+    handle: Faker::Internet.unique.user_name,
+    password: Faker::Internet.password(10, 20),
+    email: Faker::Internet.unique.free_email,
+    confirmed_at: Faker::Time.between(2.days.ago, Date.today, :all),
+    role: :recipient
+  })
+end
 
-Goal.create ({
-  user: u4,
-  name: 'Pay November Rent',
-  desc: 'I need some help paying my rent for this month. All proceeds '\
-        'go directly to my landlord!',
-  amount: 300,
-  posted: (1.day + 3.hour).ago,
-  public: true,
-  deleted: false
-})
+# Donors
 
-Goal.create ({
-  user: u4,
-  name: 'Buy Week\'s Groceries',
-  desc: 'Items include eggs, milk, vegetables, and rice.',
-  amount: 40,
-  posted: (1.day + 10.hour).ago,
-  public: true,
-  deleted: false
-})
+10.times do
+  User.create ({
+    name: Faker::HarryPotter.unique.character,
+    handle: Faker::Internet.unique.user_name,
+    password: Faker::Internet.password(10, 20),
+    email: Faker::Internet.unique.free_email,
+    confirmed_at: Faker::Time.between(2.days.ago, Date.today, :all),
+    role: :donor
+  })
+end
 
-Goal.create ({
-  user: u5,
-  name: 'Christmas Present for Kids',
-  desc: 'My children need as many Bionicles as possible! Please help '\
-        'me buy 10 of them so my son can unite them into the Toa Muta',
-  amount: 70,
-  posted: (2.day + 1.hour).ago,
-  public: true,
-  deleted: false
-})
+# Goals
 
-Goal.create ({
-  user: u5,
-  name: 'Bus Fare',
-  desc: 'Looking to obtain bus fair for the month so I can commute to work',
-  amount: 70,
-  posted: (1.day + 3.hour).ago,
-  public: true,
-  deleted: false
-})
+recipients = User.where(role: :recipient)
+
+30.times do
+  Goal.create ({
+    user: recipients.where(id: rand(recipients.count)).take,
+    name: Faker::Book.title,
+    desc: Faker::Hobbit.quote,
+    amount: (Faker::Number.between(1, 25).to_s + '.' + Faker::Number.between(0, 99).to_s).to_money,
+    posted: (1.day + 3.hour).ago,
+    public: true,
+    deleted: false
+  })
+end
+
