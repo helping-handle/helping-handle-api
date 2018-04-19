@@ -11,6 +11,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rack-cors'
 gem 'devise'
 gem 'faker'
+gem 'money-rails'
 
 group :development, :test do
   gem 'byebug'

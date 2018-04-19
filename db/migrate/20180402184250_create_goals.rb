@@ -4,7 +4,7 @@ class CreateGoals < ActiveRecord::Migration[5.1]
       t.references :user, foreign_key: true
       t.text :name
       t.text :desc
-      t.decimal :amount
+      t.monetize :amount
       t.datetime :posted
       t.boolean :public
       t.boolean :deleted
