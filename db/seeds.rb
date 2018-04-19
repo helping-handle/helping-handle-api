@@ -103,3 +103,14 @@ recipients = User.where(role: :recipient)
   })
 end
 
+# Favorites
+
+donors = User.where(role: :donor)
+goals = Goal.all
+
+20.times do
+  Favorite.create ({
+    user: donors.where(id: rand(donors.count)).take,
+    goal: goals.where(id: rand(goals.count)).take
+  })
+end
