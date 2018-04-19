@@ -12,11 +12,44 @@
 
 ActiveRecord::Schema.define(version: 2018_04_19_063749) do
 
+  create_table "categories", force: :cascade do |t|
+    t.text "name"
+    t.text "desc"
+    t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "donations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "goal_id"
+    t.integer "amount_cents", default: 0, null: false
+    t.string "amount_currency", default: "USD", null: false
+    t.integer "amount_actual_cents", default: 0, null: false
+    t.string "amount_actual_currency", default: "USD", null: false
+    t.text "message_donor"
+    t.text "message_recipient"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["goal_id"], name: "index_donations_on_goal_id"
+    t.index ["user_id"], name: "index_donations_on_user_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "goal_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["goal_id"], name: "index_favorites_on_goal_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
   create_table "goals", force: :cascade do |t|
     t.integer "user_id"
     t.text "name"
     t.text "desc"
-    t.decimal "amount"
+    t.integer "amount_cents"
     t.datetime "posted"
     t.boolean "public"
     t.boolean "deleted"
@@ -31,10 +64,22 @@ ActiveRecord::Schema.define(version: 2018_04_19_063749) do
     t.index ["jti"], name: "index_jwt_blacklists_on_jti"
   end
 
+  create_table "resources", force: :cascade do |t|
+    t.text "name"
+    t.text "desc"
+    t.decimal "lat", precision: 10, scale: 6
+    t.decimal "lng", precision: 10, scale: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.text "name", null: false
     t.text "handle", null: false
     t.integer "role", null: false
+    t.text "handle_cash"
+    t.text "handle_venmo"
+    t.text "handle_paypal"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
