@@ -40,7 +40,7 @@ User.create ({
   u = User.create ({
     name: Faker::GameOfThrones.unique.character,
     handle: Faker::Internet.unique.user_name,
-    password: Faker::Internet.password(10, 20),
+    password: 'topsecret',
     email: Faker::Internet.unique.free_email,
     confirmed_at: Faker::Time.between(2.days.ago, Date.today, :all),
     role: :recipient
@@ -61,7 +61,7 @@ end
   u = User.create ({
     name: Faker::HarryPotter.unique.character,
     handle: Faker::Internet.unique.user_name,
-    password: Faker::Internet.password(10, 20),
+    password: 'topsecret',
     email: Faker::Internet.unique.free_email,
     confirmed_at: Faker::Time.between(2.days.ago, Date.today, :all),
     role: :donor
@@ -115,7 +115,10 @@ goals = Goal.all
   })
 end
 
+# Donations
+
 40.times do
+  goals = Goal.all
   goal = goals.where(id: rand(goals.count)).take
   amount = rand * ((goal.amount.dollars.to_i * 0.2) - 1) + 1
 
@@ -132,7 +135,7 @@ end
   end
 
   diffAmount = (status.equal? :modified) ?
-               Faker::Number.between(1,4)
+               Faker::Number.between(1,4) :
                0
 
   msgDonor = Faker::DrWho.quote if Faker::Boolean.boolean(0.5)
@@ -148,3 +151,19 @@ end
     status: status
   })
 end
+
+# Categories
+
+12.times do
+  icons = ['mdi-airballoon', 'mdi-airplane', 'mdi-bowling', 'mdi-diamond',
+           'mdi-gauge-low', 'mdi-hamburger', 'mdi-key', 'mdi-motorbike',
+           'mdi-music', 'mdi-rice', 'mdi-tooth', 'mdi-tshirt-v',
+           'mdi-wan', 'mdi-stadium', 'mdi-secuirty-home', 'mdi-power']
+
+  c = Resource.create ({
+    name: Faker::Company.unique.buzzword,
+    desc: Faker::Company.catch_phrase,
+    icon: icons.sample
+  })
+end
+

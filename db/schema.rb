@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2018_04_19_063749) do
   create_table "resources", force: :cascade do |t|
     t.text "name"
     t.text "desc"
+    t.text "icon"
     t.decimal "lat", precision: 10, scale: 6
     t.decimal "lng", precision: 10, scale: 6
     t.datetime "created_at", null: false
