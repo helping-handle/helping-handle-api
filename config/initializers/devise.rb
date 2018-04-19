@@ -11,7 +11,7 @@ Devise.setup do |config|
   config.secret_key = Rails.application.credentials.secret_key_base
 
   config.jwt do |jwt|
-    jwt.secret = Rails.application.credentials.devise_jwt_base
+    jwt.secret = Rails.application.credentials.jwt_secret
   end
 
   # ==> Controller configuration

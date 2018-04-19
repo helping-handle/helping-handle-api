@@ -14,6 +14,8 @@ gem 'devise-jwt'
 gem 'faker'
 gem 'money-rails'
 gem 'bootsnap', '>= 1.1.0'
+gem "jbuilder", "~> 2.7"
+gem "as-duration", "~> 0.1.1"
 
 group :development, :test do
   gem 'byebug'
@@ -27,6 +29,3 @@ group :development do
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
-# Added at 2018-04-19 01:54:57 -0600 by jason:
-gem "as-duration", "~> 0.1.1"
