@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    if user_signed_in? && current_user.admin?
+    if user_signed_in? && (@user == current_user || current_user.admin?)
       render json: @user
     else
       render json: @user, :only => [:id, :handle]

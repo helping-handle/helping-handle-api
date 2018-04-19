@@ -1,21 +1,22 @@
 class GoalsController < ApplicationController
   before_action :set_goal, only: %i[show update destroy]
 
-  # GET /goals
   def index
-    @goals = Goal.includes(:user).all
+    if params[:user_id].present?
+      @goals = Goal.includes(:user).where(user_id: params[:user_id])
+    else
+      @goals = Goal.includes(:user)
+    end
 
     render json: @goals,
-                 :include => {:user => {:only => [:id, :handle]}},
-                 :except => [:deleted, :public]
+           include:  {user: {only: [:id, :handle]}},
+           except:  [:deleted, :public]
   end
 
-  # GET /goals/1
   def show
     render json: @goal
   end
 
-  # POST /goals
   def create
     @goal = Goal.new(goal_params)
 
@@ -26,7 +27,6 @@ class GoalsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /goals/1
   def update
     if @goal.update(goal_params)
       render json: @goal
@@ -35,7 +35,6 @@ class GoalsController < ApplicationController
     end
   end
 
-  # DELETE /goals/1
   def destroy
     @goal.destroy
   end

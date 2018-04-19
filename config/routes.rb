@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :categories
 
     resources :users, only: [:index, :show, :update] do
-      resources :goals
+      resources :goals, shallow: true
     end
 
     devise_for :users, path: 'auth/', controllers: {sessions: 'sessions'}
