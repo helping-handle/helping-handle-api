@@ -4,14 +4,16 @@ git_source(:github) do |repo_name|
   repo_name = "https://github.com/helping-handle/helping-handle-api"
 end
 
-gem 'rails', '~> 5.1.6'
+gem 'rails', '~> 5.2.0'
 gem 'sqlite3'
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.11'
 gem 'bcrypt', '~> 3.1.7'
 gem 'rack-cors'
 gem 'devise'
+gem 'devise-jwt'
 gem 'faker'
 gem 'money-rails'
+gem 'bootsnap', '>= 1.1.0'
 
 group :development, :test do
   gem 'byebug'
