@@ -4,11 +4,10 @@ Rails.application.routes.draw do
     resources :donations
     resources :favorites
     resources :categories
-    resources :goals
 
-    devise_for :users, controllers: {sessions: 'sessions'}
+    devise_for :users, path: 'auth/', controllers: {sessions: 'sessions'}
     devise_scope :user do
-      get 'users/current', to: 'sessions#show'
+      get 'auth/current', to: 'sessions#show'
     end
   end
 end
