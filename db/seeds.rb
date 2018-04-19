@@ -96,7 +96,7 @@ recipients = User.where(role: :recipient)
     user: recipients.where(id: rand(recipients.count)).take,
     name: Faker::Commerce.product_name,
     desc: Faker::Hobbit.quote,
-    amount: (Faker::Number.between(1, 25).to_s + '.' + Faker::Number.between(0, 99).to_s).to_money,
+    amount: Faker::Number.between(25, 300).to_money,
     posted: (1.day + 3.hour).ago,
     public: true,
     deleted: false
@@ -112,5 +112,39 @@ goals = Goal.all
   Favorite.create ({
     user: donors.where(id: rand(donors.count)).take,
     goal: goals.where(id: rand(goals.count)).take
+  })
+end
+
+40.times do
+  goal = goals.where(id: rand(goals.count)).take
+  amount = rand * ((goal.amount.dollars.to_i * 0.2) - 1) + 1
+
+  n = Faker::Number.between(0, 20)
+
+  if n.between?(0, 8)
+    status = :created
+  elsif n.between?(9,15)
+    status = :confirmed
+  elsif n.between?(16,18)
+    status = :modified
+  else
+    status = :declined
+  end
+
+  diffAmount = (status.equal? :modified) ?
+               Faker::Number.between(1,4)
+               0
+
+  msgDonor = Faker::DrWho.quote if Faker::Boolean.boolean(0.5)
+  msgRecip = Faker::OnePiece.quote if Faker::Boolean.boolean(0.2)
+
+  Donation.create ({
+    user: donors.where(id: rand(donors.count)).take,
+    goal: goal,
+    amount: amount.to_money,
+    amount_actual: (amount + diffAmount).to_money,
+    message_donor: msgDonor,
+    message_recipient: msgRecip,
+    status: status
   })
 end

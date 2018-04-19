@@ -24,10 +24,8 @@ ActiveRecord::Schema.define(version: 2018_04_19_063749) do
   create_table "donations", force: :cascade do |t|
     t.integer "user_id"
     t.integer "goal_id"
-    t.integer "amount_cents", default: 0, null: false
-    t.string "amount_currency", default: "USD", null: false
-    t.integer "amount_actual_cents", default: 0, null: false
-    t.string "amount_actual_currency", default: "USD", null: false
+    t.integer "amount_cents"
+    t.integer "amount_actual_cents"
     t.text "message_donor"
     t.text "message_recipient"
     t.integer "status"
