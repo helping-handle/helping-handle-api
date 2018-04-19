@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  goal: one
+  amount: 
+  amount_actual: 
+  message_donor: MyText
+  message_recipient: MyText
+  status: 1
+
+two:
+  user: two
+  goal: two
+  amount: 
+  amount_actual: 
+  message_donor: MyText
+  message_recipient: MyText
+  status: 1
