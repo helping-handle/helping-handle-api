@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
-  resources :goals, defaults: {format: :json}
-  devise_for :users
+  defaults format: :json do
+    resources :goals
+    devise_for :users
+  end
 end
