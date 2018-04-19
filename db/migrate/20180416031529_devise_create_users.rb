@@ -6,6 +6,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.text    :handle, null: false
       t.integer :role,   null: false
 
+      ## Cash integrations
+      t.text    :handle_cash
+      t.text    :handle_venmo
+      t.text    :handle_paypal
+
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""

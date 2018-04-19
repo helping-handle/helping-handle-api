@@ -33,7 +33,11 @@ User.create ({
 # Recipients
 
 10.times do
-  User.create ({
+  cash = Faker::Boolean.boolean(0.9)
+  venmo = Faker::Boolean.boolean(0.4)
+  paypal = Faker::Boolean.boolean(0.3)
+
+  u = User.create ({
     name: Faker::GameOfThrones.unique.character,
     handle: Faker::Internet.unique.user_name,
     password: Faker::Internet.password(10, 20),
@@ -41,12 +45,20 @@ User.create ({
     confirmed_at: Faker::Time.between(2.days.ago, Date.today, :all),
     role: :recipient
   })
+
+  u.update(handle_cash: Faker::Internet.unique.user_name) if cash
+  u.update(handle_venmo: Faker::Internet.unique.user_name) if venmo
+  u.update(handle_paypal: Faker::Internet.unique.user_name) if paypal
 end
 
 # Donors
 
 10.times do
-  User.create ({
+  cash = Faker::Boolean.boolean(0.9)
+  venmo = Faker::Boolean.boolean(0.4)
+  paypal = Faker::Boolean.boolean(0.3)
+
+  u = User.create ({
     name: Faker::HarryPotter.unique.character,
     handle: Faker::Internet.unique.user_name,
     password: Faker::Internet.password(10, 20),
@@ -54,6 +66,10 @@ end
     confirmed_at: Faker::Time.between(2.days.ago, Date.today, :all),
     role: :donor
   })
+
+  u.update(handle_cash: Faker::Internet.unique.user_name) if cash
+  u.update(handle_venmo: Faker::Internet.unique.user_name) if venmo
+  u.update(handle_paypal: Faker::Internet.unique.user_name) if paypal
 end
 
 # Goals
