@@ -13,9 +13,10 @@
 ActiveRecord::Schema.define(version: 2018_04_19_063749) do
 
   create_table "categories", force: :cascade do |t|
-    t.text "name"
+    t.text "name", null: false
     t.text "desc"
-    t.boolean "active"
+    t.text "icon"
+    t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -80,8 +81,8 @@ ActiveRecord::Schema.define(version: 2018_04_19_063749) do
     t.text "handle_cash"
     t.text "handle_venmo"
     t.text "handle_paypal"
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
+    t.string "email", null: false
+    t.string "encrypted_password", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

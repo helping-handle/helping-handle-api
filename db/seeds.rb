@@ -72,6 +72,21 @@ end
   u.update(handle_paypal: Faker::Internet.unique.user_name) if paypal
 end
 
+# Categories
+
+6.times do
+  icons = ['mdi-airballoon', 'mdi-airplane', 'mdi-bowling', 'mdi-diamond',
+           'mdi-gauge-low', 'mdi-hamburger', 'mdi-key', 'mdi-motorbike',
+           'mdi-music', 'mdi-rice', 'mdi-tooth', 'mdi-tshirt-v',
+           'mdi-wan', 'mdi-stadium', 'mdi-secuirty-home', 'mdi-power']
+
+  c = Category.create ({
+    name: Faker::Book.unique.title,
+    desc: Faker::Dune.quote,
+    icon: icons.sample
+  })
+end
+
 # Goals
 
 recipients = User.where(role: :recipient)
@@ -79,7 +94,7 @@ recipients = User.where(role: :recipient)
 30.times do
   Goal.create ({
     user: recipients.where(id: rand(recipients.count)).take,
-    name: Faker::Book.title,
+    name: Faker::Commerce.product_name,
     desc: Faker::Hobbit.quote,
     amount: (Faker::Number.between(1, 25).to_s + '.' + Faker::Number.between(0, 99).to_s).to_money,
     posted: (1.day + 3.hour).ago,
