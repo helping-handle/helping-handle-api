@@ -89,11 +89,9 @@ end
 
 # Goals
 
-recipients = User.where(role: :recipient)
-
 30.times do
   Goal.create ({
-    user: recipients.where(id: rand(recipients.count)).take,
+    user: User.where(role: :recipient).sample,
     name: Faker::Commerce.product_name,
     desc: Faker::Hobbit.quote,
     amount: Faker::Number.between(25, 300).to_money,
@@ -105,21 +103,17 @@ end
 
 # Favorites
 
-donors = User.where(role: :donor)
-goals = Goal.all
-
 20.times do
   Favorite.create ({
-    user: donors.where(id: rand(donors.count)).take,
-    goal: goals.where(id: rand(goals.count)).take
+    user: User.where(role: :donor).sample,
+    goal: Goal.all.sample
   })
 end
 
 # Donations
 
 40.times do
-  goals = Goal.all
-  goal = goals.where(id: rand(goals.count)).take
+  goal = Goal.all.sample
   amount = rand * ((goal.amount.dollars.to_i * 0.2) - 1) + 1
 
   n = Faker::Number.between(0, 20)
@@ -142,7 +136,7 @@ end
   msgRecip = Faker::OnePiece.quote if Faker::Boolean.boolean(0.2)
 
   Donation.create ({
-    user: donors.where(id: rand(donors.count)).take,
+    user: User.where(role: :donor).sample,
     goal: goal,
     amount: amount.to_money,
     amount_actual: (amount + diffAmount).to_money,
