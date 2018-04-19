@@ -27,3 +27,6 @@ group :development do
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+# Added at 2018-04-19 01:54:57 -0600 by jason:
+gem "as-duration", "~> 0.1.1"
