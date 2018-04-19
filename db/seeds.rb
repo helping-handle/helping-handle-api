@@ -32,6 +32,18 @@ User.create ({
 
 # Recipients
 
+u = User.create ({
+  name: 'Renly Baratheon',
+  handle: 'lordparamount',
+  handle_cash: 'renly',
+  handle_venmo: 'renly',
+  handle_paypal: 'renly.b',
+  password: 'topsecret',
+  email: 'renly@theredkeep.com',
+  confirmed_at: Faker::Time.between(2.days.ago, Date.today, :all),
+  role: :recipient
+})
+
 10.times do
   cash = Faker::Boolean.boolean(0.9)
   venmo = Faker::Boolean.boolean(0.4)
@@ -52,6 +64,18 @@ User.create ({
 end
 
 # Donors
+
+u = User.create ({
+  name: 'Harry Potter',
+  handle: 'thechosenone',
+  handle_cash: 'harrypotter',
+  handle_venmo: 'harry',
+  handle_paypal: 'potter',
+  password: 'topsecret',
+  email: 'harry@potter.com',
+  confirmed_at: Faker::Time.between(2.days.ago, Date.today, :all),
+  role: :donor
+})
 
 10.times do
   cash = Faker::Boolean.boolean(0.9)
