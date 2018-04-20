@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :update] do
       resources :goals, shallow: true
     end
+    resources :goals, only: [:index]
 
     devise_for :users, path: 'auth/', controllers: {sessions: 'sessions'}
     devise_scope :user do
