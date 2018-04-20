@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     end
     resources :goals, only: [:index]
 
-    get 'goals', to: 'goals#index'
+    patch 'goals/:id/toggle_favorite', to: 'goals#toggle_favorite'
 
     devise_for :users, path: 'auth/', controllers: {sessions: 'sessions'}
     devise_scope :user do
