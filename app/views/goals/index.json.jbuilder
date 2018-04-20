@@ -16,6 +16,9 @@ json.array! @goals do |goal|
   json.user do
     json.id goal.user_id
     json.handle goal.user.handle
+    json.handle_cash goal.user.handle_cash
+    json.handle_venmo goal.user.handle_venmo
+    json.handle_paypal goal.user.handle_paypal
   end
   if user_signed_in?
     json.favorited !goal.favorite.nil?
