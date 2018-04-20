@@ -2,8 +2,14 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update]
 
   def index
-    if user_signed_in? && current_user.admin?
-      render json: User.all
+    users = User.all
+
+    if params['q']
+        users = users.where('handle like ?', "%#{params[q]}%")
+    end
+
+    if user_signed_in?
+      render json: users
     else
       render json: { msg: 'Action forbidden' }, status: :forbidden
     end
