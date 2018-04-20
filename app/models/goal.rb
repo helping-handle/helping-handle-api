@@ -5,7 +5,7 @@ class Goal < ApplicationRecord
   monetize :amount_cents
 
   def amount_total
-    self.donations.where(donations: { status: :confirmed }).sum :amount_actual_cents
+    self.donations.confirmed.sum :amount_actual_cents
   end
 
   def amount_percent

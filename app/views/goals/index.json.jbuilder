@@ -10,6 +10,7 @@ json.array! @goals do |goal|
     Money.new(goal.amount_total)
   )
   json.amount_percent (goal.amount_percent * 100).round(2)
+  json.confirmed_donations goal.donations.confirmed.count
   json.created_at goal.created_at
   json.updated_at goal.updated_at
   json.user do
