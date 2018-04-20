@@ -17,4 +17,7 @@ json.array! @goals do |goal|
     json.id goal.user_id
     json.handle goal.user.handle
   end
+  if user_signed_in?
+    json.favorited !goal.favorite.nil?
+  end
 end
