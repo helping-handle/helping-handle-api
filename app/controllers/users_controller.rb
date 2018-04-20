@@ -5,14 +5,12 @@ class UsersController < ApplicationController
     users = User.all
 
     if params['q']
-        users = users.where('handle like ?', "%#{params[q]}%")
+      users = users.where('handle like ?', "%#{params['q']}%")
     end
 
-    if user_signed_in?
-      render json: users
-    else
-      render json: { msg: 'Action forbidden' }, status: :forbidden
-    end
+    render json: users, :only => [:id, :name, :handle, :handle_cash,
+                                    :handle_venmo, :handle_paypal,
+                                    :about, :interests, :education, :goals]
   end
 
   def show
