@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     end
     resources :goals, only: [:index]
 
+    get 'goals', to: 'goals#index'
+
     devise_for :users, path: 'auth/', controllers: {sessions: 'sessions'}
     devise_scope :user do
       get 'auth/current', to: 'sessions#show'

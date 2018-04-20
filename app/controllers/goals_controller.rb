@@ -3,14 +3,15 @@ class GoalsController < ApplicationController
 
   def index
     if params[:user_id].present?
-      @goals = Goal.includes(:user).where(user_id: params[:user_id])
+      @goals = Goal.joins(:user).where(user_id: params[:user_id])
     else
-      @goals = Goal.includes(:user)
+      @goals = Goal.joins(:user)
     end
 
-    render json: @goals,
-           include:  {user: {only: [:id, :handle]}},
-           except:  [:deleted, :public]
+    if (params[:q])
+      q = "%#{params[:q]}%"
+      @goals = @goals.where('goals.name like ? OR desc like ? OR users.handle like ?', q, q, q)
+    end
   end
 
   def show
