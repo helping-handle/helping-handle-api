@@ -52,7 +52,7 @@ u = User.create ({
   u = User.create ({
     name: Faker::GameOfThrones.unique.character,
     handle: Faker::Internet.unique.user_name,
-    password: 'topsecret',
+    password: Faker::Internet.password(10, 20),
     email: Faker::Internet.unique.free_email,
     confirmed_at: Faker::Time.between(2.days.ago, Date.today, :all),
     role: :recipient
@@ -85,7 +85,7 @@ u = User.create ({
   u = User.create ({
     name: Faker::HarryPotter.unique.character,
     handle: Faker::Internet.unique.user_name,
-    password: 'topsecret',
+    password: Faker::Internet.password(10, 20),
     email: Faker::Internet.unique.free_email,
     confirmed_at: Faker::Time.between(2.days.ago, Date.today, :all),
     role: :donor
@@ -176,11 +176,13 @@ end
   icons = ['mdi-airballoon', 'mdi-airplane', 'mdi-bowling', 'mdi-diamond',
            'mdi-gauge-low', 'mdi-hamburger', 'mdi-key', 'mdi-motorbike',
            'mdi-music', 'mdi-rice', 'mdi-tooth', 'mdi-tshirt-v',
-           'mdi-wan', 'mdi-stadium', 'mdi-secuirty-home', 'mdi-power']
+           'mdi-wan', 'mdi-stadium', 'mdi-security-home', 'mdi-power']
 
   c = Resource.create ({
-    name: Faker::Company.unique.buzzword,
-    desc: Faker::Company.catch_phrase,
+    name: Faker::Company.unique.name,
+    slug: Faker::Company.catch_phrase,
+    desc: Faker::Lorem.paragraph(6, false, 8),
+    email: Faker::Internet.unique.email,
     icon: icons.sample
   })
 end
