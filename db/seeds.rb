@@ -3,13 +3,25 @@ require 'as-duration'
 
 # Admin Users
 
+def loremList ()
+  i = []
+  rand(1..5).times do
+    i.push(Faker::Lorem.sentence(1, false, 2).tr('.',''))
+  end
+  return i.join(', ')
+end
+
 User.create ({
   name: 'Sonja Page',
   handle: 'sonja',
   password: 'topsecret',
   email: 'spage@mba2018.hbs.edu',
   confirmed_at: Faker::Time.between(2.days.ago, Date.today, :day),
-  role: :admin
+  role: :admin,
+  about: Faker::Lorem.paragraph(6, false, 8),
+  interests: loremList(),
+  education: loremList(),
+  goals: loremList()
 })
 
 User.create ({
@@ -18,7 +30,11 @@ User.create ({
   password: 'topsecret',
   email: 'kmendez@mba2018.hbs.edu',
   confirmed_at: Faker::Time.between(2.days.ago, Date.today, :day),
-  role: :admin
+  role: :admin,
+  about: Faker::Lorem.paragraph(6, false, 8),
+  interests: loremList(),
+  education: loremList(),
+  goals: loremList()
 })
 
 User.create ({
@@ -27,7 +43,11 @@ User.create ({
   password: 'topsecret',
   email: 'jason@pnc.one',
   confirmed_at: Faker::Time.between(2.days.ago, Date.today, :day),
-  role: :admin
+  role: :admin,
+  about: Faker::Lorem.paragraph(6, false, 8),
+  interests: loremList(),
+  education: loremList(),
+  goals: loremList()
 })
 
 # Recipients
@@ -41,7 +61,11 @@ u = User.create ({
   password: 'topsecret',
   email: 'renly@theredkeep.com',
   confirmed_at: Faker::Time.between(2.days.ago, Date.today, :all),
-  role: :recipient
+  role: :recipient,
+  about: Faker::Lorem.paragraph(6, false, 8),
+  interests: loremList(),
+  education: loremList(),
+  goals: loremList()
 })
 
 10.times do
@@ -55,7 +79,11 @@ u = User.create ({
     password: Faker::Internet.password(10, 20),
     email: Faker::Internet.unique.free_email,
     confirmed_at: Faker::Time.between(2.days.ago, Date.today, :all),
-    role: :recipient
+    role: :recipient,
+    about: Faker::Lorem.paragraph(6, false, 8),
+    interests: loremList(),
+    education: loremList(),
+    goals: loremList()
   })
 
   u.update(handle_cash: Faker::Internet.unique.user_name) if cash
@@ -74,7 +102,11 @@ u = User.create ({
   password: 'topsecret',
   email: 'harry@potter.com',
   confirmed_at: Faker::Time.between(2.days.ago, Date.today, :all),
-  role: :donor
+  role: :donor,
+  about: Faker::Lorem.paragraph(6, false, 8),
+  interests: loremList(),
+  education: loremList(),
+  goals: loremList()
 })
 
 10.times do
@@ -88,7 +120,11 @@ u = User.create ({
     password: Faker::Internet.password(10, 20),
     email: Faker::Internet.unique.free_email,
     confirmed_at: Faker::Time.between(2.days.ago, Date.today, :all),
-    role: :donor
+    role: :donor,
+    about: Faker::Lorem.paragraph(6, false, 8),
+    interests: loremList(),
+    education: loremList(),
+    goals: loremList()
   })
 
   u.update(handle_cash: Faker::Internet.unique.user_name) if cash

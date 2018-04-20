@@ -11,6 +11,12 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.text    :handle_venmo
       t.text    :handle_paypal
 
+      ## Profile
+      t.text :about
+      t.text :interests
+      t.text :education
+      t.text :goals
+
       ## Database authenticatable
       t.string :email,              null: false
       t.string :encrypted_password, null: false

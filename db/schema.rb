@@ -82,6 +82,10 @@ ActiveRecord::Schema.define(version: 2018_04_19_063749) do
     t.text "handle_cash"
     t.text "handle_venmo"
     t.text "handle_paypal"
+    t.text "about"
+    t.text "interests"
+    t.text "education"
+    t.text "goals"
     t.string "email", null: false
     t.string "encrypted_password", null: false
     t.string "reset_password_token"

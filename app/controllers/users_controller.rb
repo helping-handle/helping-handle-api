@@ -13,7 +13,9 @@ class UsersController < ApplicationController
     if user_signed_in? && (@user == current_user || current_user.admin?)
       render json: @user
     else
-      render json: @user, :only => [:id, :handle]
+      render json: @user, :only => [:id, :name, :handle, :handle_cash,
+                                    :handle_venmo, :handle_paypal,
+                                    :about, :interests, :education, :goals]
     end
   end
 
