@@ -3,7 +3,7 @@ class FavoritesController < ApplicationController
 
   # GET /favorites
   def index
-    @favorites = Favorite.all
+    @favorites = current_user.favorites.all
 
     render json: @favorites
   end
@@ -11,17 +11,6 @@ class FavoritesController < ApplicationController
   # GET /favorites/1
   def show
     render json: @favorite
-  end
-
-  # POST /favorites
-  def create
-    @favorite = Favorite.new(favorite_params)
-
-    if @favorite.save
-      render json: @favorite, status: :created, location: @favorite
-    else
-      render json: @favorite.errors, status: :unprocessable_entity
-    end
   end
 
   # PATCH/PUT /favorites/1
@@ -41,7 +30,7 @@ class FavoritesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_favorite
-      @favorite = Favorite.find(params[:id])
+      @favorite = current_user.favorites.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

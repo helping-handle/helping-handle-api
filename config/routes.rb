@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
   defaults format: :json do
     resources :resources
-    resources :donations
-    resources :favorites
+    resources :donations, only: [:index, :show, :update, :destroy]
     resources :categories
-
+    resources :goals, only: [:index]
     resources :users, only: [:index, :show, :update] do
       resources :goals, shallow: true
     end
-    resources :goals, only: [:index]
+
+    authenticate :user do
+      resources :favorites
+    end
 
     patch 'goals/:id/toggle_favorite', to: 'goals#toggle_favorite'
 
