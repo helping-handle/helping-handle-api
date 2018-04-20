@@ -40,6 +40,20 @@ class GoalsController < ApplicationController
     @goal.destroy
   end
 
+  def toggle_favorite
+    if user_signed_in?
+      if @goal.favorite.nil?
+        @goal.favorite.build user: current_user
+        head 201
+      else
+        @goal.favorite.destroy
+        head 200
+      end
+    else
+      render json: { msg: 'Action forbidden' }, status: :forbidden
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
