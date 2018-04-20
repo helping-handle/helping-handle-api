@@ -172,7 +172,7 @@ end
 
 # Donations
 
-40.times do
+120.times do
   goal = Goal.all.sample
   amount = rand * ((goal.amount.dollars.to_i * 0.2) - 1) + 1
 

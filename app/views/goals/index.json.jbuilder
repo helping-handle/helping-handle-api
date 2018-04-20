@@ -3,8 +3,13 @@ json.array! @goals do |goal|
   json.user_id goal.user_id
   json.name goal.name
   json.desc goal.desc
-  json.total_amount humanized_money_with_symbol(Money.new(goal.amount_cents))
-  json.total_approved_amount humanized_money_with_symbol(Money.new(goal.total_approved_donations))
+  json.amount_total humanized_money_with_symbol(
+    Money.new(goal.amount_cents)
+  )
+  json.amount_approved humanized_money_with_symbol(
+    Money.new(goal.amount_total)
+  )
+  json.amount_percent (goal.amount_percent * 100).round(2)
   json.created_at goal.created_at
   json.updated_at goal.updated_at
   json.user do

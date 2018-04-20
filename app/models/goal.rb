@@ -4,7 +4,11 @@ class Goal < ApplicationRecord
   has_one :favorite
   monetize :amount_cents
 
-  def total_approved_donations
+  def amount_total
     self.donations.where(donations: { status: :confirmed }).sum :amount_actual_cents
+  end
+
+  def amount_percent
+    Money.new(self.amount_total) / Money.new(self.amount_cents)
   end
 end
