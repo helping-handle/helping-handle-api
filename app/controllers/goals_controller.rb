@@ -1,5 +1,5 @@
 class GoalsController < ApplicationController
-  before_action :set_goal, only: %i[show update destroy]
+  before_action :set_goal, only: [:show, :update, :destroy, :toggle_favorite]
 
   def index
     if params[:user_id].present?
@@ -43,7 +43,7 @@ class GoalsController < ApplicationController
   def toggle_favorite
     if user_signed_in?
       if @goal.favorite.nil?
-        @goal.favorite.build user: current_user
+        @goal.build_favorite(user: current_user).save
         head 201
       else
         @goal.favorite.destroy
