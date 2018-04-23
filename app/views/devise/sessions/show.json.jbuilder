@@ -1,6 +1,7 @@
 json.extract! current_user, :id, :name, :handle, :handle_cash,
                            :handle_venmo, :handle_paypal,
-                           :about, :interests, :education, :goals
+                           :about, :interests, :education, :goals,
+                           :role
 json.total_donated humanized_money_with_symbol(
   Money.new(current_user.donations.confirmed.sum(:amount_actual_cents))
 )
