@@ -19,6 +19,7 @@ gem "as-duration", "~> 0.1.1"
 
 group :development, :test do
   gem 'byebug'
+  gem 'awesome_print'
   gem 'rubocop', require: false
 end
 
