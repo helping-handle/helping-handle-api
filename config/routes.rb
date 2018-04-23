@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
     patch 'goals/:id/toggle_favorite', to: 'goals#toggle_favorite'
 
-    devise_for :users, path: 'auth/', controllers: {sessions: 'sessions'}
+    devise_for :users, path: 'auth/', controllers: {sessions: 'sessions', registrations: 'registrations' }
     devise_scope :user do
       get 'auth/current', to: 'sessions#show'
     end

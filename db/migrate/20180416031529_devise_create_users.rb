@@ -4,7 +4,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       ## Profile fields
       t.text    :name,   null: false
       t.text    :handle, null: false
-      t.integer :role,   null: false
+      t.integer :role,   null: false, default: :recipient
 
       ## Cash integrations
       t.text    :handle_cash
