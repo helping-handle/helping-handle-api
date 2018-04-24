@@ -4,11 +4,10 @@ Rails.application.routes.draw do
     resources :donations, only: [:index, :show, :update, :destroy]
     resources :categories
 
-    resources :goals, only: [:index]
-
     resources :users, only: [:index, :show, :update] do
-      resources :goals, shallow: true
+      resources :goals, only: [:index]
     end
+    resources :goals, only: [:show, :edit, :create, :update, :destroy]
 
     authenticate :user do
       resources :favorites

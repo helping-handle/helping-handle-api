@@ -21,7 +21,7 @@ User.create ({
   about: Faker::Lorem.paragraph(6, false, 8),
   interests: loremList(),
   education: loremList(),
-  goals: loremList()
+  goals_str: loremList()
 })
 
 User.create ({
@@ -34,7 +34,7 @@ User.create ({
   about: Faker::Lorem.paragraph(6, false, 8),
   interests: loremList(),
   education: loremList(),
-  goals: loremList()
+  goals_str: loremList()
 })
 
 User.create ({
@@ -47,7 +47,7 @@ User.create ({
   about: Faker::Lorem.paragraph(6, false, 8),
   interests: loremList(),
   education: loremList(),
-  goals: loremList()
+  goals_str: loremList()
 })
 
 # Recipients
@@ -65,7 +65,7 @@ u = User.create ({
   about: Faker::Lorem.paragraph(6, false, 8),
   interests: loremList(),
   education: loremList(),
-  goals: loremList()
+  goals_str: loremList()
 })
 
 10.times do
@@ -83,7 +83,7 @@ u = User.create ({
     about: Faker::Lorem.paragraph(6, false, 8),
     interests: loremList(),
     education: loremList(),
-    goals: loremList()
+    goals_str: loremList()
   })
 
   u.update(handle_cash: Faker::Internet.unique.user_name) if cash
@@ -106,7 +106,7 @@ u = User.create ({
   about: Faker::Lorem.paragraph(6, false, 8),
   interests: loremList(),
   education: loremList(),
-  goals: loremList()
+  goals_str: loremList()
 })
 
 10.times do
@@ -124,7 +124,7 @@ u = User.create ({
     about: Faker::Lorem.paragraph(6, false, 8),
     interests: loremList(),
     education: loremList(),
-    goals: loremList()
+    goals_str: loremList()
   })
 
   u.update(handle_cash: Faker::Internet.unique.user_name) if cash

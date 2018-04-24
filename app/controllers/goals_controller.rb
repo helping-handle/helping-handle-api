@@ -20,7 +20,7 @@ class GoalsController < ApplicationController
 
   def create
     if user_signed_in?
-      @goal = Goal.new(goal_params)
+      @goal = current_user.goals.build(goal_params)
 
       if @goal.save
         render json: @goal, status: :created, location: @goal

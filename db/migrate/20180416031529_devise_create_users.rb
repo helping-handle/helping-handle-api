@@ -15,7 +15,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.text :about
       t.text :interests
       t.text :education
-      t.text :goals
+      t.text :goals_str
 
       ## Database authenticatable
       t.string :email,              null: false
