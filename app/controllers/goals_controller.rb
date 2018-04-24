@@ -19,12 +19,16 @@ class GoalsController < ApplicationController
   end
 
   def create
-    @goal = Goal.new(goal_params)
+    if user_signed_in?
+      @goal = Goal.new(goal_params)
 
-    if @goal.save
-      render json: @goal, status: :created, location: @goal
+      if @goal.save
+        render json: @goal, status: :created, location: @goal
+      else
+        render json: @goal.errors, status: :unprocessable_entity
+      end
     else
-      render json: @goal.errors, status: :unprocessable_entity
+      render json: { msg: 'Action forbidden' }, status: :forbidden
     end
   end
 

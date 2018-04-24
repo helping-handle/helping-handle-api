@@ -3,7 +3,9 @@ Rails.application.routes.draw do
     resources :resources
     resources :donations, only: [:index, :show, :update, :destroy]
     resources :categories
+
     resources :goals, only: [:index]
+
     resources :users, only: [:index, :show, :update] do
       resources :goals, shallow: true
     end

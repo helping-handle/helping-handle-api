@@ -1,4 +1,4 @@
-json.extract! current_user, :id, :name, :handle, :handle_cash,
+json.extract! current_user, :id, :name, :email, :handle, :handle_cash,
                            :handle_venmo, :handle_paypal,
                            :about, :interests, :education, :goals,
                            :role
