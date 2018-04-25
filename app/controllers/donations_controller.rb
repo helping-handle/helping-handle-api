@@ -1,5 +1,5 @@
 class DonationsController < ApplicationController
-  before_action :set_donation, only: %i[show update destroy]
+  before_action :set_donation, only: [:show, :update, :destroy]
 
   # GET /donations
   def index

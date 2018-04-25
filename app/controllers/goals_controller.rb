@@ -1,5 +1,5 @@
 class GoalsController < ApplicationController
-  before_action :set_goal, only: %i[show update destroy toggle_favorite]
+  before_action :set_goal, only: [:show, :update, :destroy, :toggle_favorite]
 
   def index
     @goals = if params[:user_id].present?

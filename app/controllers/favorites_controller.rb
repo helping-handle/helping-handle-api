@@ -1,5 +1,5 @@
 class FavoritesController < ApplicationController
-  before_action :set_favorite, only: %i[show update destroy]
+  before_action :set_favorite, only: [:show, :update, :destroy]
 
   # GET /favorites
   def index

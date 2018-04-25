@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
   defaults format: :json do
-    resources :goals,       only: %i[index show]
-    resources :resources,   only: %i[index show]
+    resources :goals,       only: [:index, :show]
+    resources :resources,   only: [:index, :show]
     resources :donations,   only: [:create]
-    resources :users,       only: %i[index show]
+    resources :users,       only: [:index, :show]
 
     authenticate :user do
-      resources :goals,     only: %i[create update destroy]
-      resources :resources, only: %i[create update destroy]
-      resources :donations, only: %i[update show]
+      resources :goals,     only: [:create, :update, :destroy]
+      resources :resources, only: [:create, :update, :destroy]
+      resources :donations, only: [:update, :show]
       resources :favorites
       resources :users, only: [:update] do
         resources :goals, only: [:index]

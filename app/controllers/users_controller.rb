@@ -1,23 +1,19 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show update]
+  before_action :set_user, only: [:show, :update]
 
   def index
     users = User.all
 
     users = users.where('handle like ?', "%#{params['q']}%") if params['q']
 
-    render json: users, only: %i[id name handle handle_cash
-                                 handle_venmo handle_paypal
-                                 about interests education goals]
+    render json: users, only: [:id, :name, :handle, :handle_cash, :handle_venmo, :handle_paypal, :about, :interests, :education, :goals]
   end
 
   def show
     if user_signed_in? && (@user == current_user || current_user.admin?)
       render json: @user
     else
-      render json: @user, only: %i[id name handle handle_cash
-                                   handle_venmo handle_paypal
-                                   about interests education goals]
+      render json: @user, only: [:id, :name, :handle, :handle_cash, :handle_venmo, :handle_paypal, :about, :interests, :education, :goals]
     end
   end
 
