@@ -5,10 +5,10 @@ class Goal < ApplicationRecord
   monetize :amount_cents
 
   def amount_total
-    self.donations.confirmed.sum :amount_actual_cents
+    donations.confirmed.sum :amount_actual_cents
   end
 
   def amount_percent
-    Money.new(self.amount_total) / Money.new(self.amount_cents)
+    Money.new(amount_total) / Money.new(amount_cents)
   end
 end

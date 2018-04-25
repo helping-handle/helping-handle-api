@@ -20,7 +20,5 @@ json.array! @goals do |goal|
     json.handle_venmo goal.user.handle_venmo
     json.handle_paypal goal.user.handle_paypal
   end
-  if user_signed_in?
-    json.favorited !goal.favorite.nil?
-  end
+  json.favorited !goal.favorite.nil? if user_signed_in?
 end

@@ -3,12 +3,12 @@ require 'as-duration'
 
 # Admin Users
 
-def loremList ()
+def loremList
   i = []
   rand(1..5).times do
-    i.push(Faker::Lorem.sentence(1, false, 2).tr('.',''))
+    i.push(Faker::Lorem.sentence(1, false, 2).tr('.', ''))
   end
-  return i.join(', ')
+  i.join(', ')
 end
 
 User.create ({
@@ -19,9 +19,9 @@ User.create ({
   confirmed_at: Faker::Time.between(2.days.ago, Date.today, :day),
   role: :admin,
   about: Faker::Lorem.paragraph(6, false, 8),
-  interests: loremList(),
-  education: loremList(),
-  goals_str: loremList()
+  interests: loremList,
+  education: loremList,
+  goals_str: loremList
 })
 
 User.create ({
@@ -32,9 +32,9 @@ User.create ({
   confirmed_at: Faker::Time.between(2.days.ago, Date.today, :day),
   role: :admin,
   about: Faker::Lorem.paragraph(6, false, 8),
-  interests: loremList(),
-  education: loremList(),
-  goals_str: loremList()
+  interests: loremList,
+  education: loremList,
+  goals_str: loremList
 })
 
 User.create ({
@@ -45,9 +45,9 @@ User.create ({
   confirmed_at: Faker::Time.between(2.days.ago, Date.today, :day),
   role: :admin,
   about: Faker::Lorem.paragraph(6, false, 8),
-  interests: loremList(),
-  education: loremList(),
-  goals_str: loremList()
+  interests: loremList,
+  education: loremList,
+  goals_str: loremList
 })
 
 # Recipients
@@ -63,9 +63,9 @@ u = User.create ({
   confirmed_at: Faker::Time.between(2.days.ago, Date.today, :all),
   role: :recipient,
   about: Faker::Lorem.paragraph(6, false, 8),
-  interests: loremList(),
-  education: loremList(),
-  goals_str: loremList()
+  interests: loremList,
+  education: loremList,
+  goals_str: loremList
 })
 
 10.times do
@@ -81,9 +81,9 @@ u = User.create ({
     confirmed_at: Faker::Time.between(2.days.ago, Date.today, :all),
     role: :recipient,
     about: Faker::Lorem.paragraph(6, false, 8),
-    interests: loremList(),
-    education: loremList(),
-    goals_str: loremList()
+    interests: loremList,
+    education: loremList,
+    goals_str: loremList
   })
 
   u.update(handle_cash: Faker::Internet.unique.user_name) if cash
@@ -104,9 +104,9 @@ u = User.create ({
   confirmed_at: Faker::Time.between(2.days.ago, Date.today, :all),
   role: :donor,
   about: Faker::Lorem.paragraph(6, false, 8),
-  interests: loremList(),
-  education: loremList(),
-  goals_str: loremList()
+  interests: loremList,
+  education: loremList,
+  goals_str: loremList
 })
 
 10.times do
@@ -122,9 +122,9 @@ u = User.create ({
     confirmed_at: Faker::Time.between(2.days.ago, Date.today, :all),
     role: :donor,
     about: Faker::Lorem.paragraph(6, false, 8),
-    interests: loremList(),
-    education: loremList(),
-    goals_str: loremList()
+    interests: loremList,
+    education: loremList,
+    goals_str: loremList
   })
 
   u.update(handle_cash: Faker::Internet.unique.user_name) if cash
@@ -178,18 +178,18 @@ end
 
   n = Faker::Number.between(0, 20)
 
-  if n.between?(0, 8)
-    status = :created
-  elsif n.between?(9,15)
-    status = :confirmed
-  elsif n.between?(16,18)
-    status = :modified
-  else
-    status = :declined
-  end
+  status = if n.between?(0, 8)
+             :created
+           elsif n.between?(9, 15)
+             :confirmed
+           elsif n.between?(16, 18)
+             :modified
+           else
+             :declined
+           end
 
-  diffAmount = (status.equal? :modified) ?
-               Faker::Number.between(1,4) :
+  diffAmount = status.equal? :modified ?
+               Faker::Number.between(1, 4) :
                0
 
   msgDonor = Faker::DrWho.quote if Faker::Boolean.boolean(0.5)
@@ -222,4 +222,3 @@ end
     icon: icons.sample
   })
 end
-

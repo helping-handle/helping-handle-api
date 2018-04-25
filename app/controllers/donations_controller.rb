@@ -1,5 +1,5 @@
 class DonationsController < ApplicationController
-  before_action :set_donation, only: [:show, :update, :destroy]
+  before_action :set_donation, only: %i[show update destroy]
 
   # GET /donations
   def index
@@ -39,13 +39,14 @@ class DonationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_donation
-      @donation = Donation.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def donation_params
-      params.require(:donation).permit(:user_id, :goal_id, :amount, :amount_actual, :message_donor, :message_recipient, :status)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_donation
+    @donation = Donation.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def donation_params
+    params.require(:donation).permit(:user_id, :goal_id, :amount, :amount_actual, :message_donor, :message_recipient, :status)
+  end
 end

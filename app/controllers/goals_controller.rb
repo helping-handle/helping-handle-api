@@ -1,14 +1,14 @@
 class GoalsController < ApplicationController
-  before_action :set_goal, only: [:show, :update, :destroy, :toggle_favorite]
+  before_action :set_goal, only: %i[show update destroy toggle_favorite]
 
   def index
-    if params[:user_id].present?
-      @goals = Goal.joins(:user).where(user_id: params[:user_id])
-    else
-      @goals = Goal.joins(:user)
-    end
+    @goals = if params[:user_id].present?
+               Goal.joins(:user).where(user_id: params[:user_id])
+             else
+               Goal.joins(:user)
+             end
 
-    if (params[:q])
+    if params[:q]
       q = "%#{params[:q]}%"
       @goals = @goals.where('goals.name like ? OR desc like ? OR users.handle like ?', q, q, q)
     end
